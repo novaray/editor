@@ -24,6 +24,11 @@ module.exports = {
                     loader: "ts-loader",
                 },
             },
+            {
+                test: /\.html$/i,
+                exclude: /node_module/,
+                loader: "html-loader",
+            },
         ],
     },
     resolve: {
