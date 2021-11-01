@@ -1,4 +1,4 @@
-import {HtmlElement} from '../interface/HtmlElement';
+import {HtmlElement} from '../interfaces/HtmlElement';
 
 export class CheckBoxType implements HtmlElement{
     private _items: CheckBoxItem[];

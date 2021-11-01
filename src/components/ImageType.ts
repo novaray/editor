@@ -1,4 +1,4 @@
-import {HtmlElement} from '../interface/HtmlElement';
+import {HtmlElement} from '../interfaces/HtmlElement';
 
 export class ImageType implements HtmlElement{
     private _url: string;

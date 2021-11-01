@@ -5,7 +5,7 @@ import {CheckBoxType} from './CheckBoxType';
 import {RadioButtonType} from './RadioButtonType';
 import {ImageType} from './ImageType';
 import {DelimiterType} from './DelimiterType';
-import {HtmlElement} from '../interface/HtmlElement';
+import {HtmlElement} from '../interfaces/HtmlElement';
 
 export type BlockDataType =
     | ParagraphType

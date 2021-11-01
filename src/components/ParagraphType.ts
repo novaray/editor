@@ -1,4 +1,4 @@
-import {HtmlElement} from '../interface/HtmlElement';
+import {HtmlElement} from '../interfaces/HtmlElement';
 
 export class ParagraphType implements HtmlElement{
     private _text: string;
@@ -19,9 +19,9 @@ export class ParagraphType implements HtmlElement{
         const div = document.createElement('div');
         div.contentEditable = 'true';
         
+        const doc = new DOMParser().parseFromString(this.text, 'text/html');
         const p = document.createElement('p');
-        const text = document.createTextNode(this.text);
-        p.appendChild(text);
+        p.appendChild(doc.body);
         div.appendChild(p);
         
         return div;
