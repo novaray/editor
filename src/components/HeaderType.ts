@@ -27,11 +27,11 @@ export class HeaderType implements HtmlElement {
     
     getHtmlElement(): HTMLElement {
         const div = document.createElement('div');
-        div.contentEditable = 'true';
-    
         const hTag = document.createElement(`h${this.level}`);
         const text = document.createTextNode(this.text);
+        
         hTag.appendChild(text);
+        hTag.contentEditable = 'true';
         div.appendChild(hTag);
     
         return div;

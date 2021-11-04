@@ -17,7 +17,6 @@ export class CheckBoxType implements HtmlElement{
     
     public getHtmlElement() {
         const parentDiv = document.createElement('div');
-        parentDiv.contentEditable = 'true';
         
         this._items.forEach(t => {
             const checkbox = document.createElement('input');
