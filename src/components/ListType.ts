@@ -1,4 +1,5 @@
 import {HtmlElement} from '../interfaces/HtmlElement';
+import {BlockTypeKind} from '../types/BlockTypeKind';
 
 export class ListType implements HtmlElement{
     private _style: ListKind
@@ -23,6 +24,10 @@ export class ListType implements HtmlElement{
     
     set items(value: string[]) {
         this._items = value;
+    }
+    
+    get instanceType(): BlockTypeKind {
+        return BlockTypeKind.LIST;
     }
     
     getHtmlElement(): HTMLElement {

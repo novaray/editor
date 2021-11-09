@@ -1,11 +1,7 @@
-import {getIframe, initEventHandler} from './scripts/Iframe';
-const iframe = getIframe();
-iframe.onload = () => {
-    initEventHandler();
-}
+import {getPage} from './scripts/Iframe';
 
-document.getElementById('app')?.appendChild(iframe);
+document.getElementById('app')?.appendChild(getPage());
 
 window.addEventListener('message', (e) => {
     console.log(e.origin, e.data);
-})
+});

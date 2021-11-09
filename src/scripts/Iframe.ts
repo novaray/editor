@@ -165,34 +165,10 @@ const testBlocks = {
     ]
 };
 
-export function getIframe () {
-    const iframe: HTMLIFrameElement = document.createElement('iframe');
-    iframe.id = 'cube-editor';
-    const body = document.createElement('body');
-
+export function getPage() {
     const json = JSON.stringify(testBlocks.blocks);
     const page:Page = new Page(new Date().getTime().toString());
     page.blocks = page.parseJson(json);
-    const rootDiv = document.createElement('div');
-    page.blocks.forEach(t => {
-        rootDiv.appendChild(t.getHtmlElement());
-    })
-    body.appendChild(rootDiv);
-
-    iframe.src = `data:text/html;charset=utf-8,${encodeURI(body.outerHTML ?? '')}`;
-    iframe.height = '500px';
-    iframe.width = '500px';
     
-    return iframe;
-}
-
-export function initEventHandler() {
-    const iframe: HTMLIFrameElement | null = document.getElementById('cube-editor') as HTMLIFrameElement;
-    console.log(iframe);
-    if (iframe != null) {
-        parent.postMessage('긴 밤이 되니까 널 데려가니까', '*');
-        
-        // const paragraphs = iframe.contentWindow?.document.querySelectorAll('div#cube-paragraph > p');
-        // console.log(paragraphs);
-    }
+    return page.rootDiv;
 }

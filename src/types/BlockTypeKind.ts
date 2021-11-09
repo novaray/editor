@@ -1,0 +1,10 @@
+
+export enum BlockTypeKind {
+    PARAGRAPH = 'PARAGRAPH',
+    HEADER = 'HEADER',
+    LIST = 'LIST',
+    CHECKBOX = 'CHECKBOX',
+    RADIOBUTTON = 'RADIOBUTTON',
+    IMAGE = 'IMAGE',
+    DELIMITER = 'DELIMITER'
+}

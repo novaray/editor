@@ -29,6 +29,7 @@ export class CheckBoxType implements HtmlElement{
             const label = document.createElement('label');
             const text= document.createTextNode(t.label);
             label.appendChild(text);
+            label.contentEditable = 'true';
             // label이랑 checkbox랑 묶으면 화면에서 텍스트 수정 못해서 불가 처리
             // label.htmlFor = t.value;
             
