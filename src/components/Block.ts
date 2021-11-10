@@ -1,5 +1,6 @@
 import {HtmlElement} from '../interfaces/HtmlElement';
 import {BlockTypeKind} from '../types/BlockTypeKind';
+import {CustomEventKind} from '../types/CustomEventKind';
 
 export class Block implements HtmlElement {
   private _id: string;
@@ -54,8 +55,24 @@ export class Block implements HtmlElement {
         case 'ArrowUp':
         case 'ArrowDown':
           if (e.shiftKey) {
-            console.log('shift with arrow key');
+            console.log(e);
           }
+      }
+    });
+    
+    child.addEventListener('focus', (e) => {
+      const element = e.target as Element;
+      element.classList.add('focused');
+    });
+    
+    child.addEventListener('blur', (e) => {
+      const element = e.target as Element;
+      element.classList.remove('focused');
+      
+      if (element.textContent == null || element.textContent.length === 0) {
+        div.dispatchEvent(new CustomEvent(CustomEventKind.BLOCK_BLUR_REMOVE, {
+          bubbles: true
+        }));
       }
     });
     

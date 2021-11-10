@@ -1,4 +1,4 @@
-import {getPage} from './scripts/Iframe';
+import {getPage} from './scripts/MakeEditor';
 
 document.getElementById('app')?.appendChild(getPage());
 

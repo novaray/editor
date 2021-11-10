@@ -31,7 +31,6 @@ export class ListType implements HtmlElement{
     }
     
     getHtmlElement(): HTMLElement {
-        const div = document.createElement('div');
         const list = document.createElement(this.style === ListKind.ORDERED ? 'ol' : 'ul');
         this.items.forEach(t => {
             const li = document.createElement('li');
@@ -42,8 +41,7 @@ export class ListType implements HtmlElement{
         });
         list.contentEditable = 'true';
         
-        div.appendChild(list);
-        return div;
+        return list;
     }
 }
 

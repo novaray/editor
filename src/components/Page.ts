@@ -9,6 +9,7 @@ import {Block} from './Block';
 import {BlockTypeKind} from '../types/BlockTypeKind';
 import {HtmlElement} from '../interfaces/HtmlElement';
 import {getUuid} from '../utils/CommonUtils'
+import {CustomEventKind} from '../types/CustomEventKind';
 
 export class Page {
   private _blocks?: Block[];
@@ -52,6 +53,7 @@ export class Page {
         const block = new Block(t.id, t.type, this.getInstance(t));
         let htmlElement = block.getHtmlElement();
         this.handleKeyDown(htmlElement, t.id, t.type);
+        this.handleBlur(htmlElement, t.id);
         instanceBlocks.push(block)
         this.rootDiv.appendChild(htmlElement);
       } catch (ex) {
@@ -91,7 +93,7 @@ export class Page {
   
   private handleKeyDown(div: HTMLElement, id: string, type: BlockTypeKind) {
     div.onkeydown = (e) => {
-      if (e.isComposing) {  //IME 입력 시 enter 칠 경우 이벤트 두 번 방지.
+      if (e.isComposing) {  //IME 입력 중에 enter 칠 경우 이벤트 두 번 방지(Mac 한정?).
         return;
       }
       
@@ -109,6 +111,13 @@ export class Page {
     }
   }
   
+  private handleBlur(div: HTMLElement, id: string) {
+    div.addEventListener(CustomEventKind.BLOCK_BLUR_REMOVE, () => {
+      this.blocks = this.blocks.filter(it => it.id !== id);
+      document.getElementById(id)?.remove();
+    });
+  }
+  
   private appendNewBlock(id: string) {
     const uuid = getUuid();
     const block = new Block(uuid, BlockTypeKind.PARAGRAPH, new ParagraphType(''));
@@ -118,8 +127,9 @@ export class Page {
     this.blocks.splice(index, 0, block);
     this.rootDiv.insertBefore(htmlElement, this.rootDiv.children[index + 1]);
     this.handleKeyDown(htmlElement, id, block.type);
-    // @ts-ignore
-    this.rootDiv.querySelector(`#${uuid} > p`)?.focus();
+    let newElement = this.rootDiv.querySelector(`#${uuid} > p`) as HTMLElement;
+    this.handleBlur(htmlElement, uuid);
+    newElement.focus();
   }
   
 }
