@@ -14,7 +14,7 @@ import {CustomEventKind} from '../types/CustomEventKind';
 export class Page {
   private _blocks?: Block[];
   private _time: string;
-  private _rootDiv: HTMLDivElement;
+  private readonly _rootDiv: HTMLDivElement;
   
   constructor(time: string) {
     this._time = time;
@@ -22,6 +22,7 @@ export class Page {
     this._rootDiv.style.height = '500px';
     this._rootDiv.style.width = '500px';
     this._rootDiv.style.overflow = 'scroll';
+    this._rootDiv.classList.add('cube-editor');
   }
   
   get blocks(): Block[] {
